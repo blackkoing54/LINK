@@ -4,7 +4,7 @@ import './DomeGallery.css';
 // 1. 引入缩略图（用于3D球体，自动转换为 300px 宽度的 WebP，极快！）
 const thumbImages = import.meta.glob('/src/assets/gallery/*.jpg', {
   eager: true,
-  query: { w: '300', format: 'webp' }, // 触发 vite-imagetools 插件进行压缩
+  query: { w: '200', format: 'webp' ,quality: '70' }, // 触发 vite-imagetools 插件进行压缩
   import: 'default',
 });
 
@@ -52,7 +52,7 @@ export default function DomeGallery() {
   const sphereRef = useRef<HTMLDivElement>(null);
   const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
 
-  const segments = 35; // 降低渲染节点数量，提升性能
+  const segments = 20; // 降低渲染节点数量，提升性能
   const items = useMemo(() => buildItems(DEFAULT_IMAGES, segments), []);
 
   // ✅ 拖拽 + 惯性
