@@ -3,39 +3,32 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { WordsPullUp } from './WordsPullUp';
 
-// 路径工具：自动处理 GitHub Pages 的 base 路径
-const baseUrl = import.meta.env.BASE_URL;
-const getAsset = (path: string) => `${baseUrl}${path.replace(/^\//, '')}`;
-
 export const HeroSection = () => {
   const { t, i18n } = useTranslation();
 
   return (
-    // ============================================
-    // 🎬 第一板块：首屏 - 全屏视频背景
-    // ============================================
     <section className="relative h-screen w-full overflow-hidden">
-      {/* ---------- 1. 背景视频层 ---------- */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="auto"
-        className="absolute top-0 left-0 w-full h-full object-cover z-0"
-      >
-        <source src={getAsset('/hero1.mp4')} type="video/mp4" />
-        {t('hero.unsupportedVideo', '您的浏览器不支持视频播放。')}
-      </video>
+      {/* ---------- 1. 背景视频层：B站嵌入 ---------- */}
+      <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none">
+        <iframe
+          src="//player.bilibili.com/player.html?isOutside=true&aid=116570848236706&bvid=BV1FN5X6DEjc&cid=38320015021&p=1&autoplay=1&loop=1&muted=1&controls=0&danmaku=0&high_quality=1"
+          className="absolute top-1/2 left-1/2 w-[300%] h-[300%]"
+          style={{
+            transform: 'translate(-50%, -50%)',
+            border: 'none',
+          }}
+          allow="autoplay"
+          title="Hero Background"
+        />
+      </div>
 
       {/* ---------- 2. 半透明黑色遮罩层 ---------- */}
-      <div className="absolute inset-0 bg-black/0 z-10" />
+      <div className="absolute inset-0 bg-black/40 z-10" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/40 z-10" />
 
       {/* ---------- 3. 主要文字内容区 ---------- */}
       <div className="relative z-30 h-full flex flex-col justify-end p-8 md:p-16">
         <div className="max-w-7xl mx-auto w-full">
-          {/* 主标题 */}
           <div className="flex items-start">
             <WordsPullUp
               key={i18n.language}
@@ -44,7 +37,6 @@ export const HeroSection = () => {
             />
           </div>
 
-          {/* 副标题 */}
           <motion.div
             key={`subtitle-${i18n.language}`}
             initial={{ opacity: 0, x: 20 }}
@@ -57,7 +49,6 @@ export const HeroSection = () => {
             </p>
           </motion.div>
 
-          {/* 搜索框 + Join 按钮 */}
           <motion.div
             key={`search-${i18n.language}`}
             initial={{ opacity: 0, y: 20 }}
@@ -67,7 +58,6 @@ export const HeroSection = () => {
           >
             <div className="flex-1 bg-white/10 backdrop-blur-md rounded-full px-6 py-4 flex items-center gap-3 border border-white/20">
               <Search className="w-5 h-5 text-gray-300" />
-
               <input
                 type="text"
                 placeholder={t('hero.searchPlaceholder', '搜索国家...')}
@@ -85,7 +75,6 @@ export const HeroSection = () => {
             </button>
           </motion.div>
 
-          {/* 占位盒子：把底部视觉区域撑开 */}
           <div className="h-128 md:h-32 w-full" />
         </div>
       </div>
