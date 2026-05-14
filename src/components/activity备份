@@ -11,10 +11,6 @@ import {
   MapPin,
 } from 'lucide-react';
 
-// 路径工具：自动处理 GitHub Pages 的 base 路径
-const baseUrl = import.meta.env.BASE_URL;
-const getAsset = (path: string) => `${baseUrl}${path.replace(/^\//, '')}`;
-
 // ============================================
 // 📸 活动结构数据
 // 这里只保留：id、状态、图片路径
@@ -245,7 +241,7 @@ export const ActivitySection = () => {
                   onClick={() => setSelectedActivity(activity.id)}
                 >
                   <img
-                    src={getAsset(activity.coverImage)}
+                    src={activity.coverImage}
                     alt={name}
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105"
                   />
@@ -453,7 +449,7 @@ const ActivityModal = ({
         </button>
 
         <img
-          src={getAsset(activity.coverImage)}
+          src={activity.coverImage}
           alt={name}
           className="w-full aspect-[16/9] object-cover rounded-2xl mb-8"
         />
@@ -515,7 +511,7 @@ const ActivityModal = ({
                 return (
                   <figure key={index} className="space-y-3">
                     <img
-                      src={getAsset(block.src)}
+                      src={block.src}
                       alt={block.caption || name}
                       className="w-full rounded-2xl object-cover"
                     />
