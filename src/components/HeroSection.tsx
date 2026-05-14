@@ -9,11 +9,15 @@ export const HeroSection = () => {
   return (
     <section className="relative h-screen w-full overflow-hidden">
       {/* ---------- 1. 背景视频层：B站嵌入 ---------- */}
-      <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none">
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <iframe
           src="//player.bilibili.com/player.html?isOutside=true&aid=116570848236706&bvid=BV1FN5X6DEjc&cid=38320015021&p=1&autoplay=1&loop=1&muted=1&controls=0&danmaku=0&high_quality=1"
-          className="absolute top-1/2 left-1/2 w-[300%] h-[300%]"
+          className="absolute top-1/2 left-1/2"
           style={{
+            width: '177.78vh',
+            height: '100vh',
+            minWidth: '100vw',
+            minHeight: '56.25vw',
             transform: 'translate(-50%, -50%)',
             border: 'none',
           }}
