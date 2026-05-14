@@ -11,17 +11,11 @@ export const HeroSection = () => {
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      {/* ---------- 1. 背景视频层 ---------- */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="metadata"
-        className="absolute top-0 left-0 w-full h-full object-cover z-0"
-      >
-        <source src={getAsset('/hero1.mp4')} type="video/mp4" />
-      </video>
+     {/* ---------- 1. 背景图片层 ---------- */}
+<div
+  className="absolute inset-0 bg-cover bg-center z-0"
+  style={{ backgroundImage: `url(${getAsset('/hero2.jpg')})` }}
+/>
 
       {/* ---------- 2. 半透明黑色遮罩层 ---------- */}
       <div className="absolute inset-0 bg-black/15 z-10" />
