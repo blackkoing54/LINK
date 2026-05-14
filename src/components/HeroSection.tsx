@@ -3,28 +3,25 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { WordsPullUp } from './WordsPullUp';
 
+const baseUrl = import.meta.env.BASE_URL;
+const getAsset = (path: string) => `${baseUrl}${path.replace(/^\//, '')}`;
+
 export const HeroSection = () => {
   const { t, i18n } = useTranslation();
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      {/* ---------- 1. 背景视频层：B站嵌入 ---------- */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <iframe
-          src="//player.bilibili.com/player.html?isOutside=true&aid=116570848236706&bvid=BV1FN5X6DEjc&cid=38320015021&p=1&autoplay=1&loop=1&muted=1&controls=0&danmaku=0&high_quality=1"
-          className="absolute top-1/2 left-1/2"
-          style={{
-            width: '177.78vh',
-            height: '100vh',
-            minWidth: '100vw',
-            minHeight: '56.25vw',
-            transform: 'translate(-50%, -50%)',
-            border: 'none',
-          }}
-          allow="autoplay"
-          title="Hero Background"
-        />
-      </div>
+      {/* ---------- 1. 背景视频层 ---------- */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        className="absolute top-0 left-0 w-full h-full object-cover z-0"
+      >
+        <source src={getAsset('/hero1.mp4')} type="video/mp4" />
+      </video>
 
       {/* ---------- 2. 半透明黑色遮罩层 ---------- */}
       <div className="absolute inset-0 bg-black/40 z-10" />
